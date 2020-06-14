@@ -4,24 +4,23 @@ import requests
 import re
 import os
 
-######### Links Harvester ########
+######### Links Harvester begins ########
 
 targetUrl = "https://trip.llnl.gov/results.html"
 
-harvestedLinks = ['results/results2019-2.html', 'results/results2018-1.html']
+harvestedLinks = []
 
-# html_page = requests.get(targetUrl).text
-# soup = BeautifulSoup(html_page, "lxml")
-# harvestTable = soup.find_all('table', attrs={'width': '714'})
+html_page = requests.get(targetUrl).text
+soup = BeautifulSoup(html_page, "lxml")
+harvestTable = soup.find_all('table', attrs={'width': '714'})
 
-# for link in soup.find_all('a', attrs={'href': re.compile('^results')}):
-#     harvestedLinks.append(link.get('href'))
+for link in soup.find_all('a', attrs={'href': re.compile('^results')}):
+    harvestedLinks.append(link.get('href'))
+
 i = 0
 
-# Make a GET request to fetch the raw HTML content
+######## Table Maker begins #######
 for harvestedLink in harvestedLinks:
-
-    ######## Table Maker #######
 
     htmlHead = """<!DOCTYPE html><html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Document</title> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <style>body{text-align: center}.link-wrapper{width: 100%; text-align: center}.navbar-nav{float:none; margin: 0 auto; display: table; table-layout: fixed;}</style> </head> <body> <div class='container'><div class='row'><div class='col-12'>"""
 
