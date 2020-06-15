@@ -36,7 +36,12 @@ Create the results directory:
 ::
   mkdir results
 
-Use pip to install all the above requirements.
+Use pip to install all the above requirements:
+::
+  pip install bs4
+  pip install Requests
+  pip install Re
+  pip install Lxml
 
 Configuration
 =============
@@ -63,4 +68,6 @@ Please use Github to report bugs, feature requests and submit your code:
 http://github.com/jbernadas/table-converter
 
 :author: Joseph Bernadas
+:version: 1.0.0
 :date: 2020/06/14
+:license: GPL version 3
