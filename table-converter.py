@@ -31,10 +31,7 @@ harvestTable = initialSoup.find_all('table', attrs={'width': '714'})
 for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
     harvestedLinks.append(link.get('href'))
 
-###########################################
 ##### / End of Link Crawler/Harvester #####
-###########################################
-
 ###########################################
 ######### Table Converter begins ##########
 ###########################################
