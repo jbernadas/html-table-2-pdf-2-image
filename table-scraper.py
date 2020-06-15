@@ -5,24 +5,24 @@ import re
 import os
 
 #########################################
-######### Links Harvester begins ########
+######### Links Crawler/Harvester begins ########
 #########################################
 
-# The target URL where all our links are to be harvested
+# The target URL where we plan to get our links from
 targetUrl = "https://trip.llnl.gov/results.html"
 
-# Initially empty to hold all the harvested links
+# Initialize empty array to hold all the harvested links
 harvestedLinks = []
 
-# Gets all the text version of the DOM
+# Gets the text version targetURL DOM and stores in variable
 html_page = requests.get(targetUrl).text
-# Use BeautifulSoup to stores all data of page
-soup = BeautifulSoup(html_page, "lxml")
-# Looks for a table with a specific attribute
-harvestTable = soup.find_all('table', attrs={'width': '714'})
+# Use BeautifulSoup to store all data from page
+initialSoup = BeautifulSoup(html_page, "lxml")
+# From the above data we looks for those tables which contain the final info we need
+harvestTable = initialSoup.find_all('table', attrs={'width': '714'})
 
 # Loops through all the valid tables and harvest links and store it into harvestedLinks array
-for link in soup.find_all('a', attrs={'href': re.compile('^results')}):
+for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
     harvestedLinks.append(link.get('href'))
 
 ###########################################
@@ -33,24 +33,26 @@ for link in soup.find_all('a', attrs={'href': re.compile('^results')}):
 ######## Table Maker begins ###############
 ###########################################
 
-# Increment
+# Stores incremented value
 i = 0
+
+# Loops through each of the harvested links
 for harvestedLink in harvestedLinks:
-    # For the HTML header
+    # Used for the HTML header and body
     htmlHead = """<!DOCTYPE html><html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Document</title> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <style>body{text-align: center}.link-wrapper{width: 100%; text-align: center}a.btn.btn-default{padding: 3px 20px; margin: 5px}.navbar-nav{float:none; margin: 0 auto; display: table; table-layout: fixed;}</style> </head> <body> <div class='container'><div class='row'><div class='col-12'>"""
-    # Closes the above HTML
+    # Closes the above HTML and body
     htmlEnd = """</div></div></div></body></html>"""
     # The navigation bar
     anchorLinksNav = """<div class='link-wrapper'><ul class="nav navbar-nav"> <li><a class='btn btn-default' href='#i125'>I-125</a></li><li><a class='btn btn-default' href='#i131'>I-131</a></li></ul></div>"""
-    # The invisible anchor tags for scrolling to sections
+    # The invisible anchor tags for scrolling to sections of page
     anchorI125 = "<a id='i125'></a><p><h3>I-125 Results</h3></p>"
     anchorI131 = "<a id='i131'></a><p><h3>I-131 Results</h3></p>"
 
     # Stitches together base URL and the harvestedLink
-    html_content = requests.get("https://trip.llnl.gov/" + harvestedLink).text
+    fullUrl = requests.get("https://trip.llnl.gov/" + harvestedLink).text
 
     # Parses the HTML content
-    soup = BeautifulSoup(html_content, 'lxml')
+    soup = BeautifulSoup(fullUrl, 'lxml')
     # Stores the page's title
     pageTitle = soup.h2
     # Stores the page's sub-title
