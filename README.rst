@@ -25,6 +25,8 @@ Installation
 ============
 
 git clone https://github.com/jbernadas/table-converter
+cd into the directory created
+Use pip to install all the above requirements.
 
 Configuration
 =============
