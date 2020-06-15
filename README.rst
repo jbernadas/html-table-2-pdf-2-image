@@ -60,7 +60,7 @@ cd into the root directory:
 ::
   cd table-converter
 
-Fire-up it up:
+Fire it up:
 ::
   python3 table-converter.py
 
