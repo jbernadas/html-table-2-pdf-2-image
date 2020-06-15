@@ -4,11 +4,11 @@ import requests
 import re
 import os
 
-#########################################
-######### Links Crawler/Harvester begins ########
-#########################################
+##########################################
+##### Link Crawler/Harvester begins ######
+##########################################
 
-# The target URL where we plan to get our links from
+# The URL where we plan to get our links from
 targetUrl = "https://trip.llnl.gov/results.html"
 
 # Initialize empty array to hold all the harvested links
