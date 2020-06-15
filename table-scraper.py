@@ -16,7 +16,7 @@ harvestedLinks = []
 
 # Gets all the text version of the DOM
 html_page = requests.get(targetUrl).text
-# BeautifulSoup stores all data of page
+# Use BeautifulSoup to stores all data of page
 soup = BeautifulSoup(html_page, "lxml")
 # Looks for a table with a specific attribute
 harvestTable = soup.find_all('table', attrs={'width': '714'})
