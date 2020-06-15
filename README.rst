@@ -2,7 +2,7 @@
 TABLE CONVERTER
 ============
 
-Crawls and harvest links then, recursively looks for tables to reconstitute from old style tables to Bootstrap ready tables.
+Crawls and harvests links, then recursively looks for tables and cleans it of extra attributes then builds new Bootstrap ready tables.
 
 Features:
 
@@ -10,10 +10,10 @@ Features:
 - Harvest the table links and stores them in an array.
 - Strips away the table's unnecessary attributes to recreate it as a Bootstrap ready version. 
 
-Contributions and comments are welcome using Github at: 
+Contributions and comments are welcome at: 
 http://github.com/jbernadas/table-converter
 
-Please note that Table-Converter requires:
+These are the dependencies it requires:
 
 - BeautifulSoup 4
 - Requests
@@ -31,10 +31,6 @@ Clone as usual:
 Go inside the created directory: 
 :: 
   cd table-converter
-
-Create the results directory:
-::
-  mkdir results
 
 Use pip to install all the above requirements:
 ::
@@ -60,7 +56,7 @@ cd into the root directory:
 ::
   cd table-converter
 
-Fire it up:
+Fire it up, it takes a few seconds to convert a hundred tables:
 ::
   python3 table-converter.py
 
