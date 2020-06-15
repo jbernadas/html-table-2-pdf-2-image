@@ -56,8 +56,13 @@ You can tweak the arguments and parameters to make it find the necessary table t
 Usage
 =====
 
-cd into the root directory.
-python3 table-converter.py
+cd into the root directory:
+::
+  cd table-converter
+
+Fire-up it up:
+::
+  python3 table-converter.py
 
 You will find the result inside the results folder.
 
