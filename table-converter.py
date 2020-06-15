@@ -14,20 +14,20 @@ import os
 ##### Link Crawler/Harvester begins ######
 ##########################################
 
-# The URL where we plan to get our links from
+# Ask for URL where we plan to get our links from
 targetUrl = input("What is the URL of the tables we need to convert? ")
 
 # Initialize empty array to hold all the harvested links
 harvestedLinks = []
 
-# Gets the text version targetURL DOM and stores in variable
+# Get the text version of targetURL DOM and store in variable
 html_page = requests.get(targetUrl).text
 # Use BeautifulSoup to store all data from page
 initialSoup = BeautifulSoup(html_page, "lxml")
-# From the above data we looks for those tables which contain the final info we need
+# Look for specific, common attributes in the links we need
 harvestTable = initialSoup.find_all('table', attrs={'width': '714'})
 
-# Loops through all the valid tables and harvest links and store it into harvestedLinks array
+# Loop and harvest links and store it into harvestedLinks array
 for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
     harvestedLinks.append(link.get('href'))
 
@@ -36,10 +36,10 @@ for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
 ######### Table Converter begins ##########
 ###########################################
 
-# Stores incremented value
+# Store increment value
 i = 0
 
-# Loops through each of the harvested links
+# Loop through each of the harvested links
 for harvestedLink in harvestedLinks:
     # Used for the HTML header and body (Comment-out to output just the tables without HTML 5 header)
     htmlHead = """<!DOCTYPE html><html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Document</title> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <style>body{text-align: center}.link-wrapper{width: 100%; text-align: center}a.btn.btn-default{padding: 3px 20px; margin: 5px}.navbar-nav{float:none; margin: 0 auto; display: table; table-layout: fixed;}</style> </head> <body> <div class='container'><div class='row'><div class='col-12'>"""
