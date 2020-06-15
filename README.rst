@@ -24,15 +24,18 @@ Please note that Table-Converter requires:
 Installation
 ============
 
+Clone as usual:
 :: 
   git clone https://github.com/jbernadas/table-converter
+
+Go inside the created directory: 
 :: 
-  cd into the directory created
+  cd table-converter
 
 Create the results directory:
 ::
   mkdir results
-  
+
 Use pip to install all the above requirements.
 
 Configuration
