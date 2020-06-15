@@ -4,40 +4,59 @@ import requests
 import re
 import os
 
+#########################################
 ######### Links Harvester begins ########
+#########################################
 
+# The target URL where all our links are to be harvested
 targetUrl = "https://trip.llnl.gov/results.html"
 
-harvestedLinks = ["results/results2019-2.html"]
+# Initially empty to hold all the harvested links
+harvestedLinks = []
 
-# html_page = requests.get(targetUrl).text
-# soup = BeautifulSoup(html_page, "lxml")
-# harvestTable = soup.find_all('table', attrs={'width': '714'})
+# Gets all the text version of the DOM
+html_page = requests.get(targetUrl).text
+# BeautifulSoup stores all data of page
+soup = BeautifulSoup(html_page, "lxml")
+# Looks for a table with a specific attribute
+harvestTable = soup.find_all('table', attrs={'width': '714'})
 
-# for link in soup.find_all('a', attrs={'href': re.compile('^results')}):
-#     harvestedLinks.append(link.get('href'))
+# Loops through all the valid tables and harvest links and store it into harvestedLinks array
+for link in soup.find_all('a', attrs={'href': re.compile('^results')}):
+    harvestedLinks.append(link.get('href'))
 
+###########################################
+######### / End of Links Harvester ########
+###########################################
+
+###########################################
+######## Table Maker begins ###############
+###########################################
+
+# Increment
 i = 0
-
-######## Table Maker begins #######
 for harvestedLink in harvestedLinks:
-
+    # For the HTML header
     htmlHead = """<!DOCTYPE html><html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Document</title> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <style>body{text-align: center}.link-wrapper{width: 100%; text-align: center}a.btn.btn-default{padding: 3px 20px; margin: 5px}.navbar-nav{float:none; margin: 0 auto; display: table; table-layout: fixed;}</style> </head> <body> <div class='container'><div class='row'><div class='col-12'>"""
-
+    # Closes the above HTML
     htmlEnd = """</div></div></div></body></html>"""
-
+    # The navigation bar
     anchorLinksNav = """<div class='link-wrapper'><ul class="nav navbar-nav"> <li><a class='btn btn-default' href='#i125'>I-125</a></li><li><a class='btn btn-default' href='#i131'>I-131</a></li></ul></div>"""
-
+    # The invisible anchor tags for scrolling to sections
     anchorI125 = "<a id='i125'></a><p><h3>I-125 Results</h3></p>"
     anchorI131 = "<a id='i131'></a><p><h3>I-131 Results</h3></p>"
 
+    # Stitches together base URL and the harvestedLink
     html_content = requests.get("https://trip.llnl.gov/" + harvestedLink).text
 
     # Parses the HTML content
     soup = BeautifulSoup(html_content, 'lxml')
+    # Stores the page's title
     pageTitle = soup.h2
+    # Stores the page's sub-title
     pageSubTitle = soup.h4
 
+    # Finds only the tables with a border attribute of 4
     tables = soup.find_all('table', attrs={"border": "4"})
 
     # Tables only with anchor tags and links
@@ -62,7 +81,7 @@ for harvestedLink in harvestedLinks:
             del tag[attribute]
 
     # Finds and removes all valign=top attributes AND child elements
-    for tag in soup.find_all(attrs={'valign': 'top'}):
+    for tag in soup.find_all('td', attrs={'bgcolor': '#999999'}):
         tag.decompose()
 
     # Finds and removes rest of valign attributes
@@ -83,3 +102,5 @@ for harvestedLink in harvestedLinks:
         for table in tables:
             file.write(str(table))
     i += 1
+
+##### / End of table maker. #####
