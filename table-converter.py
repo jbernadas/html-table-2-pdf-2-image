@@ -15,7 +15,7 @@ import os
 ##########################################
 
 # The URL where we plan to get our links from
-targetUrl = "https://trip.llnl.gov/results.html"
+targetUrl = input("What is the URL of the tables we need to convert? ")
 
 # Initialize empty array to hold all the harvested links
 harvestedLinks = []
@@ -36,7 +36,7 @@ for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
 ###########################################
 
 ###########################################
-######### Table Re begins ###########
+######### Table Converter begins ##########
 ###########################################
 
 # Stores incremented value
@@ -109,6 +109,8 @@ for harvestedLink in harvestedLinks:
     with open("./results/index%s.html" % (i), "w+", encoding='utf-8') as file:
         for table in tables:
             file.write(str(table))
+    # Increments after every pass
     i += 1
 
+print("Table convertion done. You will find the converted tables inside the results directory.")
 ##### / End of table maker. #####
