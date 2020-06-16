@@ -1,9 +1,3 @@
-# Author: Joseph Bernadas
-# Description: Crawls and harvest links then, recursively looks for tables to reconstitute from old style tables to Bootstrap ready tables.
-# Version: 1.0.0
-# License: GPL version 3
-# Date: 2020/06/14
-
 from bs4 import BeautifulSoup
 import lxml
 import requests
