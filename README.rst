@@ -60,7 +60,13 @@ Fire it up, it takes a few seconds to convert a hundred tables:
 ::
   python3 table-converter.py
 
-You will find the result inside the results folder.
+You will find the result inside the htmlResults folder.
+
+If you wish to further convert the HTML output into PDF files, run the html-to-pdf.py:
+::
+  python3 html-to-pdf.py
+
+You will find the result inside the pdfResults folder.
 
 Bugs & Contribution
 ===================
