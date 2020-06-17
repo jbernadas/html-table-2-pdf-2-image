@@ -7,16 +7,22 @@ import os
 import pdfkit
 import pdfcrowd
 
-directory = "./htmlResults"
+# Our target directory
+inputDir = "./htmlResults"
 
-i = 0
+# Increment variable (must use 1000 or else not sorting properly)
+i = 1000
 
-for filename in os.listdir(directory):
+# Loops through target directory
+for filename in os.listdir(inputDir):
+    # looks for files that end with .html
     if filename.endswith(".html"):
-        pdfkit.from_file(os.path.join(directory, filename),
+        # use pdfkit to output the PDF files to pdfResults dir
+        pdfkit.from_file(os.path.join(inputDir, filename),
                          "./pdfResults/table{}.pdf".format(i))
+        # increment by one
         i += 1
-        # print(os.path.join(directory, filename))
+        # go on
         continue
     else:
         continue

@@ -32,7 +32,7 @@ for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
 ###########################################
 
 # Store increment value
-i = 0
+i = 1000
 
 # Loop through each of the crawled/harvested links
 for harvestedLink in harvestedLinks:
