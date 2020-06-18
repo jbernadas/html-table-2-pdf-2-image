@@ -5,7 +5,7 @@ import re
 import os
 
 ##########################################
-##### Link Crawler/Harvester begins ######
+########## Link Harvester begins #########
 ##########################################
 
 # Ask for URL where we plan to get our links from
@@ -18,20 +18,21 @@ harvestedLinks = []
 html_page = requests.get(targetUrl).text
 # Use BeautifulSoup to store all data from page
 initialSoup = BeautifulSoup(html_page, "lxml")
-# Look for specific, common attributes in the links we need
+# Look for specific, common attributes of links we need
 harvestTable = initialSoup.find_all('table', attrs={'width': '714'})
 
 # Loop and harvest links and store it into harvestedLinks array
 for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
     harvestedLinks.append(link.get('href'))
 
-##### / End of Link Crawler/Harvester #####
+##### / End of Link Harvester #####
 
-###########################################
-######### Table Converter begins ##########
-###########################################
+########################################################
+######### Table Iterator and Converter begins ##########
+########################################################
 
-# Store increment value
+# Stores incremented value, used for file name sorting
+# starts off at 1000 to avoid non-sorted results
 i = 1000
 
 # Loop through each of the crawled/harvested links
@@ -96,7 +97,7 @@ for harvestedLink in harvestedLinks:
         tag.decompose()
 
     # We would like to name the file the same as document title, in this case date is document title
-    # Pattern to look for don't forget the raw string 'r' in front of regex, to avoid pep8 warnings
+    # Pattern to look for. Added raw string 'r' in front of regex, to avoid pep8 warnings
     pattern = re.compile(
         r"((January?|February?|March?|April?|May|June?|July?|August?|September?|October?|November?|December?)\s+\d{1,2},\s+\d{4})")
     # applying the pattern to search only the h2 elements group
