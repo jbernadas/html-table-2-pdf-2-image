@@ -2,4 +2,6 @@
 htmlResults/*
 pdfResults/*
 imgResults/*
-
+*.zip
+*.tar
+*.tar.gz
