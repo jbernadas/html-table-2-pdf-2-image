@@ -45,7 +45,7 @@ for harvestedLink in harvestedLinks:
     # anchorLinksNav = """<div class='link-wrapper no-print'><ul class="nav navbar-nav"> <li><a class='btn btn-default' href='#i125'>I-125</a></li><li><a class='btn btn-default' href='#i131'>I-131</a></li></ul></div>"""
     # The invisible anchor tags for scrolling to sections of page
     anchorI125 = "<a id='i125'></a><p><h3>I-125 Results</h3></p>"
-    anchorI131 = "<p><h3>I-131 Results</h3></p>"
+    anchorI131 = "<a id='i131'></a><p><h3>I-131 Results</h3></p>"
 
     # Stitches together base URL and the harvestedLink
     fullUrl = requests.get("https://trip.llnl.gov/" + harvestedLink).text
@@ -62,8 +62,8 @@ for harvestedLink in harvestedLinks:
 
     # Used for tables only with anchor tags and nav-links
     # tables.insert(0, anchorLinksNav)
-    tables.insert(0, anchorI125)
-    
+    # tables.insert(0, anchorI125)
+
     # Below 4 lines used for displaying as HTML webpage (comment-out to output just the tables)
     tables.insert(0, htmlHead)
     tables.append(htmlEnd)
