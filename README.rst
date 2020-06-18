@@ -1,5 +1,5 @@
 ============
-TABLE CONVERTER
+TABLE-2-PDF-2-IMAGE-CONVERTER
 ============
 
 Crawls and harvests links, then recursively looks for tables and cleans it of extra attributes then builds new Bootstrap ready tables.
