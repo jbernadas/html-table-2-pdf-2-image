@@ -28,7 +28,7 @@ for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
 ##### / End of Link Harvester #####
 
 ########################################################
-######### Table Iterator and Converter begins ##########
+######### Iterator and Table Converter begins ##########
 ########################################################
 
 # Stores incremented value, used for file name sorting
@@ -63,7 +63,8 @@ for harvestedLink in harvestedLinks:
     # Used for tables only with anchor tags and nav-links
     # tables.insert(0, anchorLinksNav)
     tables.insert(0, anchorI125)
-    # Used for displaying as HTML webpage (Comment-out to output just the tables)
+    
+    # Below 4 lines used for displaying as HTML webpage (comment-out to output just the tables)
     tables.insert(0, htmlHead)
     tables.append(htmlEnd)
     tables.insert(1, pageTitle)
