@@ -47,7 +47,7 @@ for filename in os.listdir(inputDir):
             # by for-loop, or else won't work on multiple files
             single_file=True,
             # Width of output image
-            size=400)
+            size=100)
         i += 1
         continue
     else:

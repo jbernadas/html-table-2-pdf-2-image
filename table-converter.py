@@ -97,8 +97,16 @@ for harvestedLink in harvestedLinks:
     for tag in soup.find_all('br'):
         tag.decompose()
 
-    # Open the file named table.html, if it does not exist create it
-    with open("./htmlResults/index%s.html" % (i), "w+", encoding='utf-8') as file:
+    # pageTitleDate = re.search("(?<=Trip Intercomparison Results:\s)(.*)", str(soup.h2.text))
+    pattern = re.compile(
+        "((January?|February?|March?|April?|May|June?|July?|August?|September?|October?|November?|December?)\s+\d{1,2},\s+\d{4})")
+    pageDate = pattern.search(str(soup.h2)).group()
+    pageDateNoComma = pageDate.replace(", ", "-")
+    pageDateNoSpace = pageDateNoComma.replace(" ", "-")
+    # print(pageDateNoSpace)
+
+    # Open the file named <date>.html, if it does not exist create it
+    with open("./htmlResults/%s-%s.html" % (i, pageDateNoSpace), "w+", encoding='utf-8') as file:
         for table in tables:
             file.write(str(table))
     # Increments after every pass
