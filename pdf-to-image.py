@@ -21,7 +21,9 @@ inputDir = './pdfResults'
 for filename in os.listdir(inputDir):
     # we only want PDF files
     if filename.endswith(".pdf"):
+        # remove the pdf- from beginning of file name
         strippedFilename0 = filename.replace("pdf-", "")
+        # remove the trailing .pdf file type
         strippedFilename1 = strippedFilename0.replace(".pdf", "")
         # use PDF2Image
         image = convert_from_path(
