@@ -32,7 +32,7 @@ for link in initialSoup.find_all('a', attrs={'href': re.compile('^results')}):
 ########################################################
 
 # Stores incremented value, used for file name sorting
-# starts off at 1000 to avoid non-sorted results
+# starts off at 1000 to avoid unsorted results
 i = 1000
 
 # Loop through each of the crawled/harvested links
