@@ -17,13 +17,12 @@ from pdf2image.exceptions import (
 # Target directory for taking PDF files to convert
 inputDir = './pdfResults'
 
-# Increment variable (must use 1000 or else not sorting properly)
-i = 1000
-
 # Loop through target directory
 for filename in os.listdir(inputDir):
     # we only want PDF files
     if filename.endswith(".pdf"):
+        strippedFilename0 = filename.replace("pdf-", "")
+        strippedFilename1 = strippedFilename0.replace(".pdf", "")
         # use PDF2Image
         image = convert_from_path(
             # Rest of this are parameters of PDF2Image output file
@@ -41,14 +40,13 @@ for filename in os.listdir(inputDir):
             # this PDF document
             last_page=1,
             # Output file name
-            output_file='table%s' % (i),
+            output_file='img-%s' % (strippedFilename1),
             # Single_file mode should be true,
             # because iteration already taken care of
             # by for-loop, or else won't work on multiple files
             single_file=True,
             # Width of output image
             size=100)
-        i += 1
         continue
     else:
         continue

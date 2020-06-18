@@ -11,17 +11,20 @@ import pdfcrowd
 inputDir = "./htmlResults"
 
 # Increment variable (must use 1000 or else not sorting properly)
-i = 1000
+# i = 1000
 
 # Loops through target directory
 for filename in os.listdir(inputDir):
     # looks for files that end with .html
     if filename.endswith(".html"):
+        # remove the .html from filename
+        strippedFilename0 = filename.replace("html-", "")
+        strippedFilename1 = strippedFilename0.replace(".html", "")
         # use pdfkit to output the PDF files to pdfResults dir
         pdfkit.from_file(os.path.join(inputDir, filename),
-                         "./pdfResults/table{}.pdf".format(i))
+                         "./pdfResults/pdf-{}.pdf".format(strippedFilename1))
         # increment by one
-        i += 1
+        # i += 1
         # go on
         continue
     else:

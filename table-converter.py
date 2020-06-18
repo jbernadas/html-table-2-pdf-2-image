@@ -106,7 +106,7 @@ for harvestedLink in harvestedLinks:
     # print(pageDateNoSpace)
 
     # Open the file named <date>.html, if it does not exist create it
-    with open("./htmlResults/%s-%s.html" % (i, pageDateNoSpace), "w+", encoding='utf-8') as file:
+    with open("./htmlResults/html-%s-%s.html" % (i, pageDateNoSpace), "w+", encoding='utf-8') as file:
         for table in tables:
             file.write(str(table))
     # Increments after every pass
