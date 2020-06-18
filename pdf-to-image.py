@@ -4,7 +4,6 @@
 # - Poppler
 # - os
 
-
 import os
 from pdf2image import convert_from_path, convert_from_bytes
 
@@ -25,9 +24,9 @@ for filename in os.listdir(inputDir):
         strippedFilename0 = filename.replace("pdf-", "")
         # remove the trailing .pdf file type
         strippedFilename1 = strippedFilename0.replace(".pdf", "")
-        # use PDF2Image
+        # will now use PDF2Image
         image = convert_from_path(
-            # Rest of this are parameters of PDF2Image output file
+            # Rest of these are parameters of PDF2Image output file
             # Input string
             os.path.join(inputDir, filename),
             # Can be png too
