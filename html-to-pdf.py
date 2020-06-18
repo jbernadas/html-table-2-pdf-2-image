@@ -1,7 +1,15 @@
-# This is a HTML to PDF converter that converts all the files inside htmlResults directory into PDF.
-# The results of the conversion is placed inside the pdfResults directory.
-# Uses the following dependencies: os, pdfkit, pdfcrowd, wkhtmltopdf
-# (the first 3 installed with pip, last one, wkhtmltopdf, is downloaded and added to path environment)
+
+##############################################################
+################# HTML to PDF Document Converter #############
+##############################################################
+# This is a HTML to PDF converter that converts all the
+# files inside the htmlResults directory into PDF. The
+# results of the conversion is placed inside the pdfResults
+# directory. Uses the following dependencies:
+# - os - use pip to install
+# - pdfkit - use pip to install
+# - pdfcrowd - use pip to install
+# - wkhtmltopdf - downloaded and added to path
 
 import os
 import pdfkit

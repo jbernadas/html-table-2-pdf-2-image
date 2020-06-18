@@ -1,7 +1,10 @@
+##########################################
+######### PDF to Image Converter #########
+##########################################
 # This is a PDF to Image converter script.
 # It uses as dependencies:
-# - PDF2Image
-# - Poppler
+# - PDF2Image - Use pip to install
+# - Poppler - Download and add to Path
 # - os
 
 import os
