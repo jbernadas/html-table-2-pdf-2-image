@@ -95,11 +95,15 @@ for harvestedLink in harvestedLinks:
     for tag in soup.find_all('br'):
         tag.decompose()
 
-    # pageTitleDate = re.search("(?<=Trip Intercomparison Results:\s)(.*)", str(soup.h2.text))
+    # We would like to name the file the same as document title, in this case date is document title
+    # Pattern to look for don't forget the raw string 'r' in front of regex, to avoid pep8 warnings
     pattern = re.compile(
-        "((January?|February?|March?|April?|May|June?|July?|August?|September?|October?|November?|December?)\s+\d{1,2},\s+\d{4})")
+        r"((January?|February?|March?|April?|May|June?|July?|August?|September?|October?|November?|December?)\s+\d{1,2},\s+\d{4})")
+    # applying the pattern to search only the h2 elements group
     pageDate = pattern.search(str(soup.h2)).group()
+    # replace commas with hyphen
     pageDateNoComma = pageDate.replace(", ", "-")
+    # replace space with hyphen
     pageDateNoSpace = pageDateNoComma.replace(" ", "-")
     # print(pageDateNoSpace)
 
