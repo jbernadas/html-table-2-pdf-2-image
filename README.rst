@@ -1,8 +1,8 @@
 ============
-TABLE-2-PDF-2-IMAGE-CONVERTER
+HTML-TABLE-2-PDF-2-IMAGE
 ============
 
-Crawls and harvests links, then recursively looks for tables and cleans it of extra attributes then builds new Bootstrap ready tables. Also has a separate script for converting to HTML tables to PDF and another separate script for converting PDFs to images like JPG or PNG.
+This is a HTML-table to PDF to image converter. It first crawls and harvests links, then recursively looks for tables and cleans it of extra attributes then builds new Bootstrap ready tables. Also has a separate script for converting HTML tables to PDF and another separate script for converting PDFs to images, i.e., JPG or PNG.
 
 Features:
 
